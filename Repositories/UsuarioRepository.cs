@@ -93,7 +93,7 @@ namespace ConsoleAppCrudVox.Repositories
         }
 
         //INSERT
-        public static void InserirUsuario(RegistroUsuario usuario)
+        public static void RegistrarUsuario(RegistroUsuario usuario)
         {
             using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
             {

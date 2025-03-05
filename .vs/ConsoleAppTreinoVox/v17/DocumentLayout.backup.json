@@ -3,28 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\data\\acessofb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:data\\acessofb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\models\\entities\\tabelas\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:models\\entities\\tabelas\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\repositories\\ramalrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:repositories\\ramalrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\models\\entities\\tabelas\\servidor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:models\\entities\\tabelas\\servidor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\models\\entities\\tabelas\\ramal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:models\\entities\\tabelas\\ramal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\models\\entities\\tabelas\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:models\\entities\\tabelas\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\models\\entities\\tabelas\\gravacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:models\\entities\\tabelas\\gravacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\services\\griservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:services\\griservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,80 +27,41 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AcessoFb.cs",
-              "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Data\\AcessoFb.cs",
-              "RelativeDocumentMoniker": "Data\\AcessoFb.cs",
-              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Data\\AcessoFb.cs",
-              "RelativeToolTip": "Data\\AcessoFb.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAiwCoAAABAAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwBcAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T17:24:15.572Z",
+              "WhenOpened": "2025-03-05T17:44:42.541Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Models\\Entities\\Tabelas\\Login.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\Tabelas\\Login.cs",
-              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Models\\Entities\\Tabelas\\Login.cs",
-              "RelativeToolTip": "Models\\Entities\\Tabelas\\Login.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAiwFkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T17:25:40.11Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Servidor.cs",
-              "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Models\\Entities\\Tabelas\\Servidor.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\Tabelas\\Servidor.cs",
-              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Models\\Entities\\Tabelas\\Servidor.cs",
-              "RelativeToolTip": "Models\\Entities\\Tabelas\\Servidor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAJAAAAAAAAAA==",
+              "Title": "GriService.cs",
+              "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Services\\GriService.cs",
+              "RelativeDocumentMoniker": "Services\\GriService.cs",
+              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Services\\GriService.cs",
+              "RelativeToolTip": "Services\\GriService.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T17:35:29.851Z",
+              "WhenOpened": "2025-03-05T17:54:12.942Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Ramal.cs",
-              "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Models\\Entities\\Tabelas\\Ramal.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\Tabelas\\Ramal.cs",
-              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Models\\Entities\\Tabelas\\Ramal.cs",
-              "RelativeToolTip": "Models\\Entities\\Tabelas\\Ramal.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAACMAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "RamalRepository.cs",
+              "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Repositories\\RamalRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\RamalRepository.cs",
+              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Repositories\\RamalRepository.cs",
+              "RelativeToolTip": "Repositories\\RamalRepository.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T17:32:26.411Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Models\\Entities\\Tabelas\\Usuario.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\Tabelas\\Usuario.cs",
-              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Models\\Entities\\Tabelas\\Usuario.cs",
-              "RelativeToolTip": "Models\\Entities\\Tabelas\\Usuario.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAEIAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T17:29:07.162Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Gravacao.cs",
-              "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Models\\Entities\\Tabelas\\Gravacao.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\Tabelas\\Gravacao.cs",
-              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Models\\Entities\\Tabelas\\Gravacao.cs",
-              "RelativeToolTip": "Models\\Entities\\Tabelas\\Gravacao.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAUwCYAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-03T17:18:55.611Z",
+              "WhenOpened": "2025-03-05T17:50:14.923Z",
               "EditorCaption": ""
             }
           ]

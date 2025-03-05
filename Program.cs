@@ -16,7 +16,7 @@ class Program
     {
         string regDbPath = @"C:\Users\lucca\Área de Trabalho\TreinamentoVox\Grav\RegDB";
         List<string> files = new List<string>();
-        
+
         try
         {
             files = Directory.GetFiles(regDbPath, "*.*").ToList();
@@ -29,12 +29,13 @@ class Program
 
                 //Processa o Gri
                 if (file.EndsWith(".GRI"))//Jogar num metodo - classe de processamento 
-                {
+                {//O processador vai chamar os services, os services vão chamar os repositories.
+
                     //Cria o Gri
                     Gri griFile = GriService.CriarGri(file);
 
                     //Valida se o ramal do Gri já está ativo em outro canal
-                    if (AcessoFb.VerificaRamalAtivoOutroCanal(griFile.Canal, griFile.Ramal))
+                    if (RamalService.VerificaSeRamalAtivoOutroCanal(griFile.Canal, griFile.Ramal))
                     {
                         continue;
                         //Log out do ramal na tabela login,
@@ -59,45 +60,42 @@ class Program
                     }
 
                     //Validação dos dados do Gri antes de inserir na base
-                    if (!AcessoFb.RamalExiste(griFile.Ramal))
+                    if (!RamalService.VerificaSeRamalExiste(griFile.Ramal))
                     {
-                        RamalInsert ramalInsert = new RamalInsert()
+                        Ramal ramal = new Ramal()
                         {
-                            CodServidor = AcessoFb.ProcurarCodServidor(griFile.Servidor),
-                            CodRamal = AcessoFb.FornecerCodRamal(),
+                            CodServidor = ServidorService.BuscarCodServidor(griFile.Servidor),
+                            CodRamal = RamalService.FornecerProxCodRamal(),
                             DataInicio = griFile.DataInicio,
                             NumCanal = griFile.Canal,
                             TxtNumRamal = griFile.Ramal
                         };
-                        AcessoFb.InserirRamal(ramalInsert);
+                        RamalService.RegistrarRamal(ramal);
                     }
 
                     //Verifica se usuário não está registrado
-                    if (!AcessoFb.UsuarioExiste(griFile.Usuario))
+                    if (!UsuarioService.VerificaSeUsuarioJaExiste(griFile.Usuario))
                     {
-                        RegistroUsuario usuario = new RegistroUsuario()
-                        {
-                            CodUsuario = AcessoFb.FornecerCodUsuario(),
-                            NomUsuario = griFile.Usuario.ToUpper(),
-                            Login = griFile.Usuario.ToUpper(),
-                            NomCurto = TornarCurtoNome(griFile.Usuario)
-                        };
-                        AcessoFb.InserirUsuario(usuario);
+                        RegistroUsuario usuario = new RegistroUsuario
+                            (
+                            UsuarioService.FornecerProxCodUsuario(), griFile.Usuario
+                            );
+                        UsuarioService.RegistrarUsuario(usuario);
                     }
 
                     //Valida se tem outros usuários logados no ramal e faz o log out, depois faz o login do atual
-                    string codUsuario = AcessoFb.ProcurarCodUsuario(griFile.Usuario);
-                    int codRamal = AcessoFb.ProcurarCodRamal(griFile.Ramal);
+                    string codUsuario = UsuarioService.BuscarCodUsuario(griFile.Usuario);
+                    int codRamal = RamalService.BuscarCodRamal(griFile.Ramal);
                     if (codUsuario != "" && codRamal != 0)
                     {
-                        if (AcessoFb.ChecarRamalEmOutroUsuario(codRamal, codUsuario))
+                        if (LoginService.VerificaSeRamalAtivoOutrosUsuarios(codRamal, codUsuario))
                         {
-                            List<string> usuarios = AcessoFb.MostrarUsuariosNoRamal(codRamal, codUsuario);
-                            AcessoFb.AtualizarUsuarioLogOut(usuarios);
+                            List<string> usuarios = LoginService.ListarOutrosUsuariosLogados(codRamal, codUsuario);
+                            LoginService.FazerLogOut(usuarios);
 
-                            if (!AcessoFb.VerificaSeUsuarioLogado(codUsuario))
+                            if (!LoginService.VerificaSeUsuarioJaLogado(codUsuario))
                             {
-                                UsuarioLogin usuario = new UsuarioLogin()
+                                LoginUsuario usuario = new LoginUsuario()
                                 {
                                     //login do usuario não logado
                                 };
@@ -166,15 +164,5 @@ class Program
         listaArquivos.Sort((s1, s2) => s1.Substring(s1.LastIndexOf(".")).CompareTo(s2.Substring(s2.LastIndexOf("."))));
         listaArquivos.Reverse();//Ordernar prioridade. extensão
 
-    }
-    public static string TornarCurtoNome(string nomeUsuario)
-    {
-        string[] nomeCompleto = nomeUsuario.Split(" ");
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < nomeCompleto.Length; i++)
-        {
-            sb.Append(nomeCompleto[i] + " ");
-        }
-        return sb.ToString().ToUpper().Trim();
     }
 }

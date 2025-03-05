@@ -97,6 +97,32 @@ namespace ConsoleAppCrudVox.Repositories
                 return false;
             }
         }
+        public static bool VerificaGravacaoJaAtualizada(DateTime dataFim)
+        {
+            using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
+            {
+                try
+                {
+                    conexaoFireBird.Open();
+                    string mSQL = $"SELECT DAT_FIM_GRAV FROM GRAVACAO WHERE DAT_FIM_GRAV = '{dataFim.ToString("yyyy-MM-dd HH:mm:ss.fff")}';";
+
+                    FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
+                    FbDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        if (dr[0] != null)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                catch (FbException fbex)
+                {
+                    Console.WriteLine("Error: " + fbex);
+                }
+            }
+            return false;
+        }
 
         //INSERT
         public static void RegistrarGravacao(Gri griFile, GriDto griDto)
@@ -134,32 +160,6 @@ namespace ConsoleAppCrudVox.Repositories
         }
 
         //UPDATE
-        public static bool VerificaGravacaoJaAtualizada(DateTime dataFim)
-        {
-            using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
-            {
-                try
-                {
-                    conexaoFireBird.Open();
-                    string mSQL = $"SELECT DAT_FIM_GRAV FROM GRAVACAO WHERE DAT_FIM_GRAV = '{dataFim.ToString("yyyy-MM-dd HH:mm:ss.fff")}';";
-
-                    FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
-                    FbDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        if (dr[0] != null)
-                        {
-                            return true;
-                        }
-                    }
-                }
-                catch (FbException fbex)
-                {
-                    Console.WriteLine("Error: " + fbex);
-                }
-            }
-            return false;
-        }
         public static void AtualizarGravacao(Grf grfFile, GrfDto grfDto)
         {
             using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())

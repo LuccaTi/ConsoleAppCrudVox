@@ -13,7 +13,7 @@ namespace ConsoleAppCrudVox.Repositories
     {
 
         //SELECT
-        public static bool VerificaRamalAtivoOutroUsuario(int codRamal, string codUsuarioGri)
+        public static bool VerificaSeRamalAtivoOutrosUsuarios(int codRamal, string codUsuarioGri)
         {
             using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
             {

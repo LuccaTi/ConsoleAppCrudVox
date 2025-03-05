@@ -14,10 +14,6 @@ namespace ConsoleAppCrudVox.Services
 {
     internal class GriService
     {
-        public GriService()
-        {
-
-        }
         public static Gri CriarGri(string caminhoArquivo)
         {
             Gri griFile = new Gri();

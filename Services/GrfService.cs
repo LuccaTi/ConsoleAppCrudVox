@@ -12,10 +12,6 @@ namespace ConsoleAppCrudVox.Services
 {
     internal class GrfService
     {
-        public GrfService()
-        {
-
-        }
         public static Grf CriarGrfDoArquivo(string caminhoArquivo)
         {
             Grf grfFile = new Grf();
