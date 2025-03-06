@@ -7,6 +7,7 @@ using ConsoleAppCrudVox.Dtos;
 using ConsoleAppCrudVox.Services;
 using FirebirdSql.Data.FirebirdClient;
 using ConsoleAppCrudVox.Models.Entities;
+using ConsoleAppCrudVox.Repositories;
 
 
 namespace ConsoleAppCrudVox;
@@ -21,26 +22,96 @@ class Program
         {
             files = Directory.GetFiles(regDbPath, "*.*").ToList();
 
-            ReverterListaDeArquivosPorExtensao(files);
+            OrdenarListaDeArquivosPorExtensao(files);
 
+            //Jogar tudo num metodo - cada iteração chama uma classe de processamento 
             foreach (string file in files)
             {
                 string gravPath = @"C:\Users\lucca\Área de Trabalho\TreinamentoVox\Grav";
 
                 //Processa o Gri
-                if (file.EndsWith(".GRI"))//Jogar num metodo - classe de processamento 
-                {//O processador vai chamar os services, os services vão chamar os repositories.
+                if (file.EndsWith(".GRI"))
+                {
 
                     //Cria o Gri
                     Gri griFile = GriService.CriarGri(file);
 
-                    //Valida se o ramal do Gri já está ativo em outro canal
+                    //Valida se o ramal já está ativo em outro canal
                     if (RamalService.VerificaSeRamalAtivoOutroCanal(griFile.Canal, griFile.Ramal))
                     {
-                        continue;
-                        //Log out do ramal na tabela login,
-                        //Desativa o ramal, flgRegAtivo, flgRamalAtivo = 'N'
+                        //Localiza e desativa os outros canais
+                        List<int> outrosCanais = RamalService.ListarOutrosCanaisDoRamal(griFile.Canal, griFile.Ramal);
+                        RamalService.DesativarCanais(outrosCanais);
+                    }
+                    else
+                    {
                         //Cria o registro do ramal, vinculando com o novo canal.
+                        if (!RamalService.VerificaSeRamalExiste(griFile.Ramal))
+                        {
+                            Ramal ramal = new Ramal()
+                            {
+                                CodServidor = ServidorService.BuscarCodServidor(griFile.Servidor),
+                                CodRamal = RamalService.FornecerProxCodRamal(),
+                                DataInicio = griFile.DataInicio,
+                                NumCanal = griFile.Canal,
+                                TxtNumRamal = griFile.Ramal
+                            };
+                            RamalService.RegistrarRamal(ramal);
+                        }
+                    }
+
+                    //Verifica se usuário está registrado
+                    string codUsuario = UsuarioService.BuscarCodUsuario(griFile.Usuario);
+                    if (!UsuarioService.VerificaSeUsuarioJaExiste(codUsuario))
+                    {
+                        RegistroUsuario usuario = new RegistroUsuario
+                            (
+                            UsuarioService.FornecerProxCodUsuario(), griFile.Usuario
+                            );
+                        UsuarioService.RegistrarUsuario(usuario);
+                    }
+
+                    //Valida se tem outros usuários logados no ramal e faz o log out
+                    int codRamal = RamalService.BuscarCodRamal(griFile.Ramal);
+                    if (codUsuario != "" && codRamal != 0)
+                    {
+                        if (LoginService.VerificaSeRamalAtivoOutrosUsuarios(codRamal, codUsuario))
+                        {
+                            List<string> usuarios = LoginService.ListarOutrosUsuariosLogados(codRamal, codUsuario);
+                            LoginService.FazerLogOut(usuarios);
+                        }
+                    }
+
+                    //Login do usuário atual
+                    if (!LoginService.VerificaSeUsuarioJaLogado(codUsuario))
+                    {
+                        LoginUsuario usuario = new LoginUsuario()
+                        {
+                            CodRamal = codRamal,
+                            CodLogin = LoginService.FornecerProxCodLogin(),
+                            DatLogin = griFile.DataInicio,
+                            CodUsuario = codUsuario
+                        };
+                        LoginService.FazerLogin(usuario);
+                    }
+
+                    //Login do usuário quando campo usuário não está preenchido
+                    if (griFile.Usuario.Equals("MASTER") && !GravacaoService.VerificaSeGravacaoJaRegistrada(griFile.NomeArquivo))
+                    {
+                        LoginUsuario usuarioGenerico = new LoginUsuario()
+                        {
+                            CodRamal = codRamal,
+                            CodLogin = LoginService.FornecerProxCodLogin(),
+                            DatLogin = griFile.DataInicio
+                        };
+                        LoginService.FazerLogin(usuarioGenerico);
+                    }
+
+                    //Recupera (SELECT) os dados necessários e insere (INSERT) na tabela gravação.
+                    if (!GravacaoService.VerificaSeGravacaoJaRegistrada(griFile.NomeArquivo))
+                    {
+                        GriDto griDto = GriService.CriarGriDto(griFile.Ramal);
+                        GravacaoService.RegistrarGravacao(griFile, griDto);
                     }
 
                     //Checa se os diretórios e arquivos .wav já existem, senão, cria eles.
@@ -59,63 +130,6 @@ class Program
                         File.Create(wavFilePath);
                     }
 
-                    //Validação dos dados do Gri antes de inserir na base
-                    if (!RamalService.VerificaSeRamalExiste(griFile.Ramal))
-                    {
-                        Ramal ramal = new Ramal()
-                        {
-                            CodServidor = ServidorService.BuscarCodServidor(griFile.Servidor),
-                            CodRamal = RamalService.FornecerProxCodRamal(),
-                            DataInicio = griFile.DataInicio,
-                            NumCanal = griFile.Canal,
-                            TxtNumRamal = griFile.Ramal
-                        };
-                        RamalService.RegistrarRamal(ramal);
-                    }
-
-                    //Verifica se usuário não está registrado
-                    if (!UsuarioService.VerificaSeUsuarioJaExiste(griFile.Usuario))
-                    {
-                        RegistroUsuario usuario = new RegistroUsuario
-                            (
-                            UsuarioService.FornecerProxCodUsuario(), griFile.Usuario
-                            );
-                        UsuarioService.RegistrarUsuario(usuario);
-                    }
-
-                    //Valida se tem outros usuários logados no ramal e faz o log out, depois faz o login do atual
-                    string codUsuario = UsuarioService.BuscarCodUsuario(griFile.Usuario);
-                    int codRamal = RamalService.BuscarCodRamal(griFile.Ramal);
-                    if (codUsuario != "" && codRamal != 0)
-                    {
-                        if (LoginService.VerificaSeRamalAtivoOutrosUsuarios(codRamal, codUsuario))
-                        {
-                            List<string> usuarios = LoginService.ListarOutrosUsuariosLogados(codRamal, codUsuario);
-                            LoginService.FazerLogOut(usuarios);
-
-                            if (!LoginService.VerificaSeUsuarioJaLogado(codUsuario))
-                            {
-                                LoginUsuario usuario = new LoginUsuario()
-                                {
-                                    //login do usuario não logado
-                                };
-                            }
-                        }
-                    }
-
-                    //Faz o login do usuário MASTER quando campo usuário não está preenchido no Gri
-                    if (griFile.Usuario.Equals("MASTER") && !AcessoFb.VerificaExisteRegistroGravacao(griFile.NomeArquivo))
-                    {
-                        Master master = AcessoFb.ProcurarDadosInsertMasterLogin(griFile.Ramal, griFile.Usuario, griFile.DataInicio);
-                        AcessoFb.FazerLoginUsuarioMaster(master);
-                    }
-
-                    //Recupera (SELECT) os dados necessários e insere (INSERT) na tabela gravação.
-                    if (!AcessoFb.VerificaExisteRegistroGravacao(griFile.NomeArquivo))
-                    {
-                        GriDto griDto = AcessoFb.ProcurarDadosInsertGri(griFile.Ramal);
-                        AcessoFb.InserirGravacao(griFile, griDto, new GriInsert());
-                    }
                 }
 
 
@@ -125,27 +139,19 @@ class Program
                     //Cria o Grf
                     Grf grfFile = GrfService.CriarGrfDoArquivo(file);
 
-                    //Verifica se há um registro (Gri) para ser atualizado
-                    if (AcessoFb.VerificaExisteRegistroGravacao(grfFile.NomeArquivo))
+                    //Verifica se há um registro para ser atualizado
+                    if (GravacaoService.VerificaSeGravacaoJaRegistrada(grfFile.NomeArquivo))
                     {
-                        //Faz a atualização (UPDATE) dos registros após o fim da gravação.
-                        if (!AcessoFb.VerificaSeAtualizado(grfFile.DataFinal))
+                        //Faz a atualização dos registros
+                        if (!GravacaoService.VerificaSeGravacaoJaAtualizada(grfFile.DataFinal))
                         {
-                            int codGravacao = AcessoFb.ProcurarCodGravacao(grfFile.NomeArquivo);
 
-                            string wavFilePath = $"{gravPath + @"\" + grfFile.CaminhoArquivo + @"\" + grfFile.NomeArquivo}";
 
-                            FileInfo fi = new FileInfo(wavFilePath);
-                            long numBytes = fi.Length;
-
-                            DateTime dataInicio = AcessoFb.ProcurarDataInicioUpdate(codGravacao);
-
-                            int numSegundos = grfFile.DataFinal.Subtract(dataInicio).Seconds;
-                            //Usar o GRF SERVICE agora
-                            GrfUpdate grfUpdate = new GrfUpdate(codGravacao, numBytes, numSegundos);
-                            AcessoFb.AlterarDadosGravacao(grfFile, grfUpdate);
-
-                            int codLogin = AcessoFb.ProcurarCodLogin(codGravacao);
+                            GrfDto grfDto = GrfService.CriarGrfDto
+                                (
+                                gravPath, grfFile.NomeArquivo, grfFile.CaminhoArquivo, grfFile.DataFinal
+                                );
+                            GravacaoService.AtualizarGravacao(grfFile, grfDto);
                         }
                     }
                 }
@@ -156,7 +162,7 @@ class Program
             Console.WriteLine("Error: " + ex);
         }
     }
-    public static void ReverterListaDeArquivosPorExtensao(List<string> listaArquivos)
+    public static void OrdenarListaDeArquivosPorExtensao(List<string> listaArquivos)
     {
 
         listaArquivos.Sort();

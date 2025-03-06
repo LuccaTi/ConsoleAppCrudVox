@@ -41,12 +41,12 @@ namespace ConsoleAppCrudVox.Services
             }
             return dataInicio;
         }
-        public static bool VerificaGravacaoJaRegistrada(string nomeArquivo)
+        public static bool VerificaSeGravacaoJaRegistrada(string nomeArquivo)
         {
             bool registrada = false;
             try
             {
-                registrada = GravacaoRepository.VerificaGravacaoJaRegistrada(nomeArquivo);
+                registrada = GravacaoRepository.VerificaSeGravacaoJaRegistrada(nomeArquivo);
             }
             catch (FbException fbex)
             {
@@ -54,13 +54,13 @@ namespace ConsoleAppCrudVox.Services
             }
             return registrada;
         }
-        public static bool VerificaGravacaoJaAtualizada(DateTime dataFim)
+        public static bool VerificaSeGravacaoJaAtualizada(DateTime dataFim)
         {
             bool atualizada = false;
             {
                 try
                 {
-                    atualizada = GravacaoRepository.VerificaGravacaoJaAtualizada(dataFim);
+                    atualizada = GravacaoRepository.VerificaSeGravacaoJaAtualizada(dataFim);
                 }
                 catch (FbException fbex)
                 {

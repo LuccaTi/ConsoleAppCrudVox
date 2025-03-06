@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppCrudVox.Repositories
 {
-    internal class UsuarioRepository
+    internal static class UsuarioRepository
     {
 
         //SELECT
-        public static bool VerificaSeUsuarioJaExiste(string nomeUsuario)
+        public static bool VerificaSeUsuarioJaExiste(string codUsuario)
         {
             using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
             {
@@ -21,14 +21,14 @@ namespace ConsoleAppCrudVox.Repositories
                 {
 
                     conexaoFireBird.Open();
-                    string mSQL = $"SELECT NOM_USUARIO FROM USUARIO WHERE NOM_USUARIO = '{nomeUsuario}';";
+                    string mSQL = $"SELECT COD_USUARIO FROM USUARIO WHERE COD_USUARIO = '{codUsuario}';";
 
                     FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
                     FbDataReader dr = cmd.ExecuteReader();
 
                     while (dr.Read())
                     {
-                        if (dr[0] != null && dr[0].Equals(nomeUsuario))
+                        if (dr[0] != null && dr[0].Equals(codUsuario))
                         {
                             return true;
                         }

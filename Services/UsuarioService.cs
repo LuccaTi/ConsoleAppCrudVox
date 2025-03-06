@@ -14,13 +14,13 @@ namespace ConsoleAppCrudVox.Services
     {
 
         //SELECT
-        public static bool VerificaSeUsuarioJaExiste(string nomeUsuario)
+        public static bool VerificaSeUsuarioJaExiste(string codUsuario)
         {
             bool usuarioExiste = false;
             try
             {
 
-                usuarioExiste = UsuarioRepository.VerificaSeUsuarioJaExiste(nomeUsuario);
+                usuarioExiste = UsuarioRepository.VerificaSeUsuarioJaExiste(codUsuario);
 
             }
             catch (FbException fbex)
@@ -67,7 +67,7 @@ namespace ConsoleAppCrudVox.Services
 
             try
             {
-                UsuarioRepository.InserirUsuario(usuario);
+                UsuarioRepository.RegistrarUsuario(usuario);
             }
             catch (FbException fbex)
             {

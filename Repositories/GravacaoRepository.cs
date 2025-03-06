@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppCrudVox.Repositories
 {
-    internal class GravacaoRepository
+    internal static class GravacaoRepository
     {
 
         //SELECT
@@ -65,7 +65,7 @@ namespace ConsoleAppCrudVox.Repositories
             }
             return dataInicio;
         }
-        public static bool VerificaGravacaoJaRegistrada(string nomeArquivo)
+        public static bool VerificaSeGravacaoJaRegistrada(string nomeArquivo)
         {
             using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
             {
@@ -97,7 +97,7 @@ namespace ConsoleAppCrudVox.Repositories
                 return false;
             }
         }
-        public static bool VerificaGravacaoJaAtualizada(DateTime dataFim)
+        public static bool VerificaSeGravacaoJaAtualizada(DateTime dataFim)
         {
             using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
             {

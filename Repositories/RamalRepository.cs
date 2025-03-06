@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppCrudVox.Repositories
 {
-    internal class RamalRepository
+    internal static class RamalRepository
     {
 
         //SELECT
@@ -39,7 +39,7 @@ namespace ConsoleAppCrudVox.Repositories
             }
             return codRamal;
         }
-        public static bool VerificaSeRamalAtivoOutroCanal(int numCanal, int ramal)
+        public static bool VerificaSeRamalAtivoOutroCanal(int ramal, int canal)
         {
 
             using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
@@ -47,13 +47,13 @@ namespace ConsoleAppCrudVox.Repositories
                 try
                 {
                     conexaoFireBird.Open();
-                    string mSQL = $"SELECT FLG_REG_ATIVO FROM RAMAL WHERE NUM_CANAL != {numCanal} AND  TXT_NUM_RAMAL = {ramal};";
+                    string mSQL = $"SELECT FLG_RAMAL_ATIVO, FLG_REG_ATIVO FROM RAMAL WHERE TXT_NUM_RAMAL = {ramal} AND NUM_CANAL != {canal};";
 
                     FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
                     FbDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        if (dr[0] != null && dr[0].Equals('S'))
+                        if (dr[0] != null && dr[0].Equals('S') && dr[1] != null && dr[1].Equals('S'))
                         {
                             return true;
                         }
@@ -65,6 +65,32 @@ namespace ConsoleAppCrudVox.Repositories
                 }
             }
             return false;
+        }
+        public static List<int> ListarOutrosCanaisDoRamal(int ramal, int canal)
+        {
+            List<int> canais = new List<int>();
+            using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
+            {
+                try
+                {
+                    conexaoFireBird.Open();
+                    string mSQL = $"SELECT NUM_CANAL FROM RAMAL WHERE TXT_NUM_RAMAL = {ramal} AND " +
+                        $"NUM_CANAL != {canal}";
+
+                    FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
+                    FbDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        canais.Add(Convert.ToInt32(dr[0]));
+                    }
+                }
+                catch (FbException fbex)
+                {
+                    Console.WriteLine("Error: " + fbex);
+                }
+            }
+            return canais;
         }
         public static int[] BuscarDadosParaDto(int ramal)
         {
@@ -178,6 +204,28 @@ namespace ConsoleAppCrudVox.Repositories
         }
 
         //UPDATE
+        public static void DesativarCanais(List<int> canais)
+        {
+            using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
+            {
+                try
+                {
+                    conexaoFireBird.Open();
+                    foreach (int canal in canais)
+                    {
+
+                        string mSQL = $"UPDATE RAMAL SET FLG_RAMAL_ATIVO = 'N', FLG_REG_ATIVO = 'N' " +
+                            $"WHERE NUM_CANAL = {canal}";
+                        FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (FbException fbex)
+                {
+                    Console.WriteLine("Error: " + fbex);
+                }
+            }
+        }
 
         //DELETE
         public static void ExcluirRegitro(int codRamal)

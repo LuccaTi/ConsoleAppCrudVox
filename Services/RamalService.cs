@@ -28,13 +28,13 @@ namespace ConsoleAppCrudVox.Services
 
             return codRamal;
         }
-        public static bool VerificaSeRamalAtivoOutroCanal(int numCanal, int ramal)
+        public static bool VerificaSeRamalAtivoOutroCanal(int ramal, int canal)
         {
 
             bool ramalAtivo = false;
             try
             {
-                ramalAtivo = RamalRepository.VerificaSeRamalAtivoOutroCanal(numCanal, ramal);
+                ramalAtivo = RamalRepository.VerificaSeRamalAtivoOutroCanal(ramal, canal);
             }
             catch (FbException fbex)
             {
@@ -42,6 +42,19 @@ namespace ConsoleAppCrudVox.Services
             }
 
             return ramalAtivo;
+        }
+        public static List<int> ListarOutrosCanaisDoRamal(int ramal, int canal)
+        {
+            List<int> canais = new List<int>();
+            try
+            {
+                canais = RamalRepository.ListarOutrosCanaisDoRamal(ramal, canal);
+            }
+            catch (FbException fbex)
+            {
+                Console.WriteLine("Error: " + fbex);
+            }
+            return canais;
         }
         public static int[] BuscarDadosParaDto(int ramal)
         {
@@ -102,8 +115,18 @@ namespace ConsoleAppCrudVox.Services
             }
         }
 
-
         //UPDATE
+        public static void DesativarCanais(List<int> canais)
+        {
+            try
+            {
+                RamalRepository.DesativarCanais(canais);
+            }
+            catch (FbException fbex)
+            {
+                Console.WriteLine("Error: " + fbex);
+            }
+        }
 
         //DELETE
         public static void ExcluirRegitro(int codRamal)

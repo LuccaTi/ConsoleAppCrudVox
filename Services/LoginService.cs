@@ -19,7 +19,7 @@ namespace ConsoleAppCrudVox.Services
             bool ramalAtivo = false;
             try
             {
-                ramalAtivo = LoginRepository.VerificaRamalAtivoOutroUsuario(codRamal, codUsuarioGri);
+                ramalAtivo = LoginRepository.VerificaSeRamalAtivoOutrosUsuarios(codRamal, codUsuarioGri);
 
             }
             catch (FbException fbex)
@@ -90,12 +90,12 @@ namespace ConsoleAppCrudVox.Services
         }
 
         //INSERT
-        public static void RegistrarLogin(LoginUsuario usuario)
+        public static void FazerLogin(LoginUsuario usuario)
         {
 
             try
             {
-                LoginRepository.RegistrarLogin(usuario);
+                LoginRepository.FazerLogin(usuario);
             }
             catch (FbException fbex)
             {

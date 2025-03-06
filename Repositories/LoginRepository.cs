@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppCrudVox.Repositories
 {
-    internal class LoginRepository
+    internal static class LoginRepository
     {
 
         //SELECT
@@ -111,7 +111,6 @@ namespace ConsoleAppCrudVox.Repositories
                     {
                         codigosUsuarios.Add(dr[0].ToString() ?? "");
                     }
-                    return codigosUsuarios;
                 }
                 catch (FbException fbex)
                 {
@@ -147,7 +146,7 @@ namespace ConsoleAppCrudVox.Repositories
         }
 
         //INSERT
-        public static void RegistrarLogin(LoginUsuario usuario)
+        public static void FazerLogin(LoginUsuario usuario)
         {
             using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
             {

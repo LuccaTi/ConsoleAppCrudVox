@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppCrudVox.Repositories
 {
-    internal class ServidorRepository
+    internal static class ServidorRepository
     {
 
         //SELECT

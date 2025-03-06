@@ -20,18 +20,20 @@ namespace ConsoleAppCrudVox.Models.Entities
 
         }
 
-        public LoginUsuario(int codRamal, int codLogin, DateTime datLogin, DateTime? datLogout)
+        public LoginUsuario(int codRamal, int codLogin, DateTime datLogin)//LOGIN usuario sem nome
         {
             CodRamal = codRamal;
             CodLogin = codLogin;
             DatLogin = datLogin;
-            DatLogout = datLogout;
         }
 
-        public LoginUsuario(int codRamal, int codLogin, DateTime datLogin, DateTime? datLogout, string codUsuario, char flgLogoutNorm) : this(codRamal, codLogin, datLogin, datLogout)
+        public LoginUsuario(int codRamal, int codLogin, DateTime datLogin, string codUsuario)//LOGIN usuario com nome
         {
+            CodRamal = codRamal;
+            CodLogin = codLogin;
+            DatLogin = datLogin;
             CodUsuario = codUsuario;
-            FlgLogoutNorm = flgLogoutNorm;
         }
+
     }
 }
