@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppCrudVox.Services
 {
-    internal class GravacaoService
+    internal static class GravacaoService
     {
         //SELECT
         public static int BuscarCodGravacao(string nomeArquivo)

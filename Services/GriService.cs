@@ -12,7 +12,7 @@ using FirebirdSql.Data.FirebirdClient;
 
 namespace ConsoleAppCrudVox.Services
 {
-    internal class GriService
+    internal static class GriService
     {
         public static Gri CriarGri(string caminhoArquivo)
         {

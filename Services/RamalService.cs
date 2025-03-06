@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppCrudVox.Services
 {
-    internal class RamalService
+    internal static class RamalService
     {
         //SELECT
         public static int BuscarCodRamal(int ramal)

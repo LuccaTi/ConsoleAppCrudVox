@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppCrudVox.Services
 {
-    internal class ServidorService
+    internal static class ServidorService
     {
         //SELECT
         public static int BuscarCodServidor(string nomeServidor)

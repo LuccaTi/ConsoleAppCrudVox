@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppCrudVox.Services
 {
-    internal class LoginService
+    internal static class LoginService
     {
 
         //SELECT

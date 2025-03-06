@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConsoleAppCrudVox")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+daab67ac9b0fae09fbcff55c77d8b12a436cfcc7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8f2e1a83138afe845016c6d2be2b2ee62930ca89")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConsoleAppCrudVox")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConsoleAppCrudVox")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -10,7 +10,7 @@ using ConsoleAppCrudVox.Repositories;
 
 namespace ConsoleAppCrudVox.Services
 {
-    internal class GrfService
+    internal static class GrfService
     {
         public static Grf CriarGrfDoArquivo(string caminhoArquivo)
         {
