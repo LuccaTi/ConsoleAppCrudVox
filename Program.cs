@@ -16,12 +16,19 @@ class Program
 {
     public static void Main(string[] args)
     {
+        //Arquivos Gri/Grf
         string regDbPath = @"C:\Users\lucca\Área de Trabalho\TreinamentoVox\Grav\RegDB";
         List<string> files = new List<string>();
+
+        //Arquivos Tkt
+        string tktFolder = @"C:\Users\lucca\Área de Trabalho\TreinamentoVox\Grav\RegDB\Processados";
+        List<string> tktFiles = new List<string>();
 
         try
         {
             files = Directory.GetFiles(regDbPath, "*.*").ToList();
+            tktFiles = Directory.GetFiles(tktFolder, "*.*").ToList();
+
 
             OrdenarListaDeArquivosPorExtensao(files);
 
@@ -40,6 +47,12 @@ class Program
                 {
                     GrfProcessor.ProcessarGrf(file, gravFolder);
                 }
+            }
+
+            foreach (string tktFile in tktFiles)
+            {
+                //Processa o tkt
+                TktProcessor.ProcessarTkt(tktFile);
             }
         }
         catch (Exception ex)

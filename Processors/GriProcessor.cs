@@ -14,6 +14,7 @@ namespace ConsoleAppCrudVox.Processors
 
         public static void ProcessarGri(string file, string folder)
         {
+
             //Instancia o GRI
             Gri griFile = GriService.CriarGri(file);
 

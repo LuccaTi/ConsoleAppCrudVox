@@ -5,14 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\processors\\griprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:processors\\griprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|c:\\users\\lucca\\source\\repos\\consoleapptreinovox\\processors\\grfprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4F827BAE-60BE-450A-B032-137958188A13}|ConsoleAppCrudVox.csproj|solutionrelative:processors\\grfprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,41 +22,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GrfProcessor.cs",
-              "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Processors\\GrfProcessor.cs",
-              "RelativeDocumentMoniker": "Processors\\GrfProcessor.cs",
-              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Processors\\GrfProcessor.cs",
-              "RelativeToolTip": "Processors\\GrfProcessor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T13:28:15.108Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GriProcessor.cs",
-              "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Processors\\GriProcessor.cs",
-              "RelativeDocumentMoniker": "Processors\\GriProcessor.cs",
-              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Processors\\GriProcessor.cs",
-              "RelativeToolTip": "Processors\\GriProcessor.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBMAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T13:20:43.783Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Program.cs*",
-              "RelativeToolTip": "Program.cs*",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAADcAAAAgAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\lucca\\source\\repos\\ConsoleAppTreinoVox\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T13:25:02.503Z",
+              "WhenOpened": "2025-03-06T13:57:53.073Z",
               "EditorCaption": ""
             }
           ]

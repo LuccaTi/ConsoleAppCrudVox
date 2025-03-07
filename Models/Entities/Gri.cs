@@ -24,7 +24,6 @@ namespace ConsoleAppCrudVox.Models.Entities
         {
 
         }
-
         public Gri(int canal, DateTime dataInicio, int codec, int header, int ramal, string servidor, string caminhoArquivo, string nomeArquivo, string usuario)
         {
             Canal = canal;

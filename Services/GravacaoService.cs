@@ -27,6 +27,19 @@ namespace ConsoleAppCrudVox.Services
             }
             return codGravacao;
         }
+        public static int BuscarCodGravacao(int codLogin)
+        {
+            int codGravacao = 0;
+            try
+            {
+                codGravacao = GravacaoRepository.BuscarCodGravacao(codLogin);
+            }
+            catch (FbException fbex)
+            {
+                Console.WriteLine("Error: " + fbex);
+            }
+            return codGravacao;
+        }
         public static DateTime BuscarDataInicio(int codGravacao)
         {
             DateTime dataInicio = new();
@@ -40,6 +53,19 @@ namespace ConsoleAppCrudVox.Services
                 Console.WriteLine("Error: " + fbex);
             }
             return dataInicio;
+        }
+        public static DateTime BuscarDataFinal(int codGravacao)
+        {
+            DateTime dataFinal = new();
+            try
+            {
+                dataFinal = GravacaoRepository.BuscarDataFinal(codGravacao);
+            }
+            catch (FbException fbex)
+            {
+                Console.WriteLine("Error: " + fbex);
+            }
+            return dataFinal;
         }
         public static bool VerificaSeGravacaoJaRegistrada(string nomeArquivo)
         {
@@ -69,6 +95,19 @@ namespace ConsoleAppCrudVox.Services
             }
             return atualizada;
         }
+        public static bool VerificaSeGravacaoJaAtualizada(string txtIdChamada, int codDirecao)
+        {
+            bool atualizada = false;
+            try
+            {
+                atualizada = GravacaoRepository.VerificaSeGravacaoJaAtualizada(txtIdChamada, codDirecao);
+            }
+            catch (FbException fbex)
+            {
+                Console.WriteLine("Error: " + fbex);
+            }
+            return atualizada;
+        }
 
         //INSERT
         public static void RegistrarGravacao(Gri griFile, GriDto griDto)
@@ -85,7 +124,6 @@ namespace ConsoleAppCrudVox.Services
         }
 
         //UPDATE
-
         public static void AtualizarGravacao(Grf grfFile, GrfDto grfDto)
         {
 
@@ -99,6 +137,17 @@ namespace ConsoleAppCrudVox.Services
                 Console.WriteLine("Error: " + fbex);
             }
 
+        }
+        public static void AtualizarGravacao(int codGravacao, string txtIdChamada, int codDirecao)
+        {
+            try
+            {
+                GravacaoRepository.AtualizarGravacao(codGravacao, txtIdChamada, codDirecao);
+            }
+            catch (FbException fbex)
+            {
+                Console.WriteLine("Error: " + fbex);
+            }
         }
 
         //DELETE

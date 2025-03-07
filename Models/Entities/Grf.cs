@@ -11,16 +11,15 @@ namespace ConsoleAppCrudVox.Models.Entities
 
         public int Canal { get; set; }
         public DateTime DataFinal { get; set; }
-        public string Servidor { get;  set; } = "";
-        public string CaminhoArquivo { get;  set; } = "";
-        public string NomeArquivo { get;  set; } = "";
+        public string Servidor { get; set; } = "";
+        public string CaminhoArquivo { get; set; } = "";
+        public string NomeArquivo { get; set; } = "";
         public string Usuario { get; set; } = "";
 
         public Grf()
         {
 
         }
-
         public Grf(int canal, DateTime dataFinal, string servidor, string caminhoArquivo, string nomeArquivo, string usuario)
         {
             Canal = canal;

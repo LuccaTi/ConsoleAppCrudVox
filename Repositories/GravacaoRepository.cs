@@ -40,6 +40,32 @@ namespace ConsoleAppCrudVox.Repositories
             }
             return codGravacao;
         }
+        public static int BuscarCodGravacao(int codLogin)
+        {
+            int codGravacao = 0;
+            using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
+            {
+                try
+                {
+                    conexaoFireBird.Open();
+                    string mSQL = $"SELECT COD_GRAVACAO FROM GRAVACAO WHERE COD_LOGIN = '{codLogin}';";
+
+                    FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
+                    FbDataReader dr = cmd.ExecuteReader();
+
+
+                    while (dr.Read())
+                    {
+                        codGravacao = Convert.ToInt32(dr[0]);
+                    }
+                }
+                catch (FbException fbex)
+                {
+                    Console.WriteLine("Error: " + fbex);
+                }
+            }
+            return codGravacao;
+        }
         public static DateTime BuscarDataInicio(int codGravacao)
         {
             DateTime dataInicio = new();
@@ -64,6 +90,31 @@ namespace ConsoleAppCrudVox.Repositories
                 }
             }
             return dataInicio;
+        }
+        public static DateTime BuscarDataFinal(int codGravacao)
+        {
+            DateTime dataFinal = new();
+            using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
+            {
+                try
+                {
+                    conexaoFireBird.Open();
+                    string mSQL = $"SELECT DAT_FIM_GRAV FROM GRAVACAO WHERE COD_GRAVACAO = {codGravacao};";
+
+                    FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
+                    FbDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        dataFinal = DateTime.Parse(dr[0].ToString() ?? "");
+                    }
+                }
+                catch (FbException fbex)
+                {
+                    Console.WriteLine("Error: " + fbex);
+                }
+            }
+            return dataFinal;
         }
         public static bool VerificaSeGravacaoJaRegistrada(string nomeArquivo)
         {
@@ -111,6 +162,33 @@ namespace ConsoleAppCrudVox.Repositories
                     while (dr.Read())
                     {
                         if (dr[0] != null)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                catch (FbException fbex)
+                {
+                    Console.WriteLine("Error: " + fbex);
+                }
+            }
+            return false;
+        }
+        public static bool VerificaSeGravacaoJaAtualizada(string txtIdChamada, int codDirecao)
+        {
+            using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
+            {
+                try
+                {
+                    conexaoFireBird.Open();
+                    string mSQL = $"SELECT TXT_ID_CHAMADA, COD_DIRECAO FROM GRAVACAO WHERE " +
+                        $"TXT_ID_CHAMADA = '{txtIdChamada}' AND COD_DIRECAO = {codDirecao}";
+
+                    FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
+                    FbDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        if (dr[0] != null && dr[1] != null)
                         {
                             return true;
                         }
@@ -181,7 +259,28 @@ namespace ConsoleAppCrudVox.Repositories
                 }
             }
         }
-        
+        public static void AtualizarGravacao(int codGravacao, string txtIdChamada, int codDirecao)
+        {
+            using (FbConnection conexaoFireBird = AcessoFb.GetInstancia().GetConexao())
+            {
+                try
+                {
+                    conexaoFireBird.Open();
+                    string mSQL = $"UPDATE GRAVACAO SET TXT_ID_CHAMADA = '{txtIdChamada}', " +
+                        $"COD_DIRECAO = {codDirecao} WHERE COD_GRAVACAO = {codGravacao}";
+
+
+                    FbCommand cmd = new FbCommand(mSQL, conexaoFireBird);
+                    cmd.ExecuteNonQuery();
+
+                }
+                catch (FbException fbex)
+                {
+                    Console.WriteLine("Error: " + fbex);
+                }
+            }
+        }
+
         //DELETE
         public static void ExcluirRegistro(int codGravacao)
         {
